@@ -1,10 +1,17 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import joblib
 import numpy as np
 import pandas as pd
 import os
 
 app = Flask(__name__)
+
+# Configure CORS with specific settings
+CORS(app, 
+     origins=["*"],  # Allow all origins (change to specific domains in production)
+     methods=["GET", "POST"],
+     allow_headers=["Content-Type", "Authorization"])
 
 # Load the model
 model_path = os.path.join(os.path.dirname(__file__), 'heart_disease_classifier_model.joblib')
